@@ -47,6 +47,17 @@ class Program
 {
     static void Main()
     {
-
+        //створюємо таймери, що кожний інтервал пишуть час
+        Timer timer1 = new Timer(() => Console.WriteLine($"Таймер 1: {DateTime.Now:HH:mm:ss}"), 2);
+        Timer timer2 = new Timer(() => Console.WriteLine($"Таймер 2: {DateTime.Now:HH:mm:ss}"), 3);
+        //запуск
+        timer1.Start();
+        timer2.Start();
+        //
+        Console.WriteLine("Натисніть Enter для зупинки");
+        Console.ReadLine();
+        //
+        timer1.Stop();
+        timer2.Stop();
     }
 }
