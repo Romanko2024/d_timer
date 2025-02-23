@@ -29,7 +29,17 @@ class Timer
     }
     private void Run()
     {
-        
+        while (isRunning) //поки таймер активний
+        {
+            action.Invoke(); //виконати передану дію
+            Thread.Sleep(interval * 1000); //затримка на interval секунд. Thread.Sleep в мілісекндах тому множимо на 1к
+        }
+    }
+    public void Stop()
+    {
+        isRunning = false; //пермикає флаг
+        thread?.Join(); //Join() не дає основному потоку завершитись доки thread (потік таймера) не закічився
+        //? щоб не виникло помилки з null
     }
 }
 
