@@ -10,5 +10,17 @@
         int k = int.Parse(Console.ReadLine());
         //прив'язуємо лямбда вираз до змінної типу створеного делегата 
         FilterDelegate isMultiple = (number, divisor) => number % divisor == 0;
+
+        //виклик фільтр. першим спос
+        int[] filtered1 = Filter_Where(numbers, k, isMultiple);
+        Console.WriteLine("Результат першим способом: " + string.Join(", ", filtered1));
     }
+    //філтрування першим методом
+    static int[] Filter_Where(int[] array, int k, FilterDelegate filter)
+    {
+        return array.Where(num => filter(num, k)).ToArray();
+    }
+
+    //тут буде другий спосіб....
+
 }
