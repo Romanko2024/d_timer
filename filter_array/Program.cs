@@ -5,7 +5,11 @@
     static void Main()
     {
         //початковий масив
-        int[] numbers = { 10, 15, 20, 25, 30, 35, 40, 45, 50 };
+        //int[] numbers = { 10, 15, 20, 25, 30, 35, 40, 45, 50 };
+
+        Console.Write("Введіть числа через пробіл: ");
+        int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
         Console.Write("Введіть число відносно якого буде перевірятися кратність: ");
         int k = int.Parse(Console.ReadLine());
         //прив'язуємо лямбда вираз до змінної типу створеного делегата 
