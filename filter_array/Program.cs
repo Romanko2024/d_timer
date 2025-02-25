@@ -28,6 +28,12 @@
     //другим способом
     static int[] FilterManual(int[] array, int k, FilterDelegate filter)
     {
-
+        int count = 0;
+        //скільки елементів підходить умові
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (filter(array[i], k))
+                count++;
+        }
     }
 }
