@@ -35,5 +35,7 @@
             if (filter(array[i], k))
                 count++;
         }
+        //новий масив
+        int[] result = new int[count];
     }
 }
