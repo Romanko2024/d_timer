@@ -35,7 +35,17 @@
             if (filter(array[i], k))
                 count++;
         }
+
         //новий масив
         int[] result = new int[count];
+
+        //заповнення масиву
+        int index = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (filter(array[i], k))
+                result[index++] = array[i];
+        }
+        return result;
     }
 }
