@@ -12,15 +12,22 @@
         FilterDelegate isMultiple = (number, divisor) => number % divisor == 0;
 
         //виклик фільтр. першим спос
-        int[] filtered1 = Filter_Where(numbers, k, isMultiple);
-        Console.WriteLine("Результат першим способом: " + string.Join(", ", filtered1));
+        int[] filtered = Filter_Where(numbers, k, isMultiple);
+        Console.WriteLine("Результат першим способом: " + string.Join(", ", filtered));
+        //викл. другий спосіб
+        int[] filteredManual = FilterManual(numbers, k, isMultiple);
+        Console.WriteLine("Результат другим способом: " + string.Join(", ", filteredManual));
     }
+
     //філтрування першим методом
     static int[] Filter_Where(int[] array, int k, FilterDelegate filter)
     {
         return array.Where(num => filter(num, k)).ToArray();
     }
 
-    //тут буде другий спосіб....
+    //другим способом
+    static int[] FilterManual(int[] array, int k, FilterDelegate filter)
+    {
 
+    }
 }
