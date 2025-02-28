@@ -27,12 +27,20 @@
     {
         double sum = 0;
         int i = 1;
-        double currentElem;
-        //while щось там  sum += currentElem
+        double currentElem = elem(i);
+        
+        while (Math.Abs(currentElem) >= precision)
+        {
+            sum += currentElem;
+            i++;
+            //переходимо до настпн елемента
+            currentElem = elem(i); 
+        }
+
         return sum;
     }
     static void Main() 
-    { 
-
+    {
+        //НЕ ХЗАБУТИвказати precision
     }
 }
