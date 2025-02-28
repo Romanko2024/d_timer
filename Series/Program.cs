@@ -22,6 +22,15 @@
     //в Math.Pow перше число, друге степінь числа!!
     //+ - чередується через парність/непарність степені
     static double ThirdSeries(int i) => Math.Pow(-1, i) / Math.Pow(2, i - 1);
+
+    static double SeriesSumCycle(SeriesElem elem, double precision)
+    {
+        double sum = 0;
+        int i = 1;
+        double currentElem;
+        //while щось там  sum += currentElem
+        return sum;
+    }
     static void Main() 
     { 
 
