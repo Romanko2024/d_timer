@@ -8,10 +8,12 @@
         {
             try
             {
-                //зчитати рядок
-                //викликати виконання оепрацыъ
+                var input = Console.ReadLine();
+                var values = input.Split().Select(double.Parse).ToArray();
+                //викликати виконання оепрацыъ через індексв масиві лабда функцій що тепер треба зробити..
+                Console.WriteLine(whatever[(int)values[0]](values[1]));
             }
-            catch
+            catch (Exception ex)
             {
                 Console.WriteLine($"Сталася помилка: {ex.Message}");
                 //Console.WriteLine("Бажаємо всього найкращого!");
