@@ -41,6 +41,16 @@
     }
     static void Main() 
     {
-        //НЕ ХЗАБУТИвказати precision
+        Console.WriteLine("Введіть точність обчислення (наприклад 0.001): ");
+        double precision;
+        //повторяэться доки не буде правлиьного значення. без out ламаэться
+        while (!double.TryParse(Console.ReadLine(), out precision) || precision <= 0)
+        {
+            Console.Write("Некоректне значення.");
+        }
+
+        Console.WriteLine("Сума першого ряду: " + SeriesSumCycle(FirstSeries, precision));
+        Console.WriteLine("Сума другого ряду: " + SeriesSumCycle(SecondSeries, precision));
+        Console.WriteLine("Сума третього ряду: " + SeriesSumCycle(ThirdSeries, precision));
     }
 }
