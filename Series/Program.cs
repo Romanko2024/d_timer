@@ -1,7 +1,7 @@
 ﻿class Program
 {
-
-    //рахуємо ітий член першого ряду. і треба якось через делегат..
+    delegate double SeriesElem(int i);
+    //рахуємо ітий член першого ряду.
     static double FirstSeries(int i) => 1.0 / Math.Pow(2, i - 1);
 
     //рахуємо ітий член другого ряду
