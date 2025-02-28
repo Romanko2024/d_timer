@@ -27,6 +27,8 @@
                 Console.WriteLine($"Сталася помилка: {ex.Message}");
                 //Console.WriteLine("Бажаємо всього найкращого!");
                 //Console.WriteLine("Щасливої дороги!");
+                Console.WriteLine($"Натисніть будь яку клавішу для виходу");
+                Console.ReadKey();
                 break;
             }
         }
