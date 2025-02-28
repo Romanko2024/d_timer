@@ -19,7 +19,9 @@
     }
 
     //рахуємо ітий член другого ряду
-
+    //в Math.Pow перше число, друге степінь числа!!
+    //+ - чередується через парність/непарність степені
+    static double ThirdSeries(int i) => Math.Pow(-1, i) / Math.Pow(2, i);
     static void Main() 
     { 
 
