@@ -8,41 +8,50 @@ using System.Threading;
 public static class SortingUtils
 {
     //сортування с заміром
-    public static (int[], long) MeasureTime(Action<int[]> sortMethod, int[] inputArray, int timeoutMs)
+    public static (int[]?, long) MeasureTime(Action<int[]> sortMethod, int[] inputArray, int timeoutMs)
     {
-        //клонує вхідний масив
         int[] copy = (int[])inputArray.Clone();
-        //запуск тайцмера
         var sw = Stopwatch.StartNew();
 
         try
         {
-            //максимальний час на виконання
             var cts = new CancellationTokenSource(timeoutMs);
-            //запуск сорт. в потоці
-            var task = Task.Run(() => sortMethod(copy), cts.Token);
-            //очікує завершення/перериває якщо
-            task.Wait(cts.Token);
+            Task.Run(() => sortMethod(copy), cts.Token).Wait(cts.Token);
+            return (copy, sw.Elapsed.Milliseconds);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Помилка під час сортування: {ex.Message}");
+            Console.WriteLine($"Помилка: {ex.Message}");
+            return (null, -1);
         }
-        //
-        sw.Stop();
-        //повертає відсторт. масив + час
-        return (copy, sw.ElapsedMilliseconds);
+        finally
+        {
+            sw.Stop();
+        }
     }
 
     public static void TestSorting(Action<int[]> referenceMethod, Action<int[]> studentMethod, int[] testArray)
     {
-        //виклик еталонного та студ сорта і заміри
-        var (refSorted, refTime) = MeasureTime(referenceMethod, testArray, 5000);
-        var (studSorted, studTime) = MeasureTime(studentMethod, testArray, 5000);
-        //чи посортовано правильно
-        bool isCorrect = refSorted.SequenceEqual(studSorted);
-        
-        Console.WriteLine($"Результат тесту: {isCorrect}");
-        Console.WriteLine($"Час еталонного: {refTime} мс, Час студентського: {studTime} мс");
+        int timeoutMs = 5000;
+
+        //запуск еталонного сортування
+        var (refSorted, refTime) = MeasureTime(referenceMethod, testArray, timeoutMs);
+        if (refSorted == null)
+        {
+            Console.WriteLine("Помилка в еталонному сортуванні!");
+            return;
+        }
+
+        //запуск студ сорту
+        var (studSorted, studTime) = MeasureTime(studentMethod, testArray, timeoutMs);
+        bool isSortedCorrectly = studSorted != null && refSorted.SequenceEqual(studSorted);
+
+        //перевірка часу
+        bool isTimeValid = studTime >= Math.Max(0, refTime / 5 - 200) && studTime <= 5 * refTime + 200;
+
+        //результати
+        Console.WriteLine($"Результат: {(isSortedCorrectly && isTimeValid ? "Успішно" : "Невдача")}");
+        Console.WriteLine($"Час еталону: {refTime} мс | Час студента: {studTime} мс");
+        Console.WriteLine("---");
     }
 }
