@@ -4,9 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sort_tester.StudentSorts
+public static class StudentSorts
 {
-    internal class SelectionSortStudent
+    public static void SelectionSort(int[] array)
     {
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            int maxIndex = i;
+            for (int j = i + 1; j < array.Length; j++)
+                if (array[j] > array[maxIndex]) //має бути <
+                    maxIndex = j;
+
+            (array[i], array[maxIndex]) = (array[maxIndex], array[i]);
+        }
     }
 }
