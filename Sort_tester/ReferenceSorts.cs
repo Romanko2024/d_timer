@@ -1,7 +1,7 @@
 ﻿public static class ReferenceSorts
 {
     // Еталонні методи сортування
-    static void SelectionSort(int[] array)
+    public static void SelectionSort(int[] array)
     {
         for (int i = 0; i < array.Length - 1; i++)
         {
@@ -13,7 +13,7 @@
             (array[i], array[minIndex]) = (array[minIndex], array[i]);
         }
     }
-    static void ShakerSort(int[] array)
+    public static void ShakerSort(int[] array)
     {
         int left = 0, right = array.Length - 1;
         bool swapped;
